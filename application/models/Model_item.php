@@ -13,4 +13,16 @@
 		{
 			return $this->db->where($field,$value)->get('item');
 		}
+		public function insert($data)
+		{
+			$this->db->insert('item',$data);
+		}
+		public function count()
+		{
+			return $this->db->query("SELECT count(iditem) as jumlah from item");
+		}
+		public function other($iditem)
+		{
+			return $this->db->query("select * from item where iditem!='$iditem' limit 3");
+		}
 	}

@@ -15,49 +15,41 @@
       <a href="#!" >
         <div class="card pop">
         <div class="card-image blue">
-          <img src="<?=base_url('/src/img/flora_icon.png');?>" height="100px;">
+          <img src="<?=base_url("/src/img/$item->gambar");?>" height="100px;">
           <span class="center-align card-title-mobile">Bunga Mawar</span>
         </div>
       </div>
       </a>
   </div>
   <div class="s12 col">
+    <form action="#!" method="post" id="form_ejaan">
     <table>
       <tr>
+        <?php 
+          $string = str_split($item->ejaan);
+          $i=1;
+
+          foreach($string as $row):
+        ?>
         <td>
-          <input name="string[]" id="string-1" class="validate" readonly id="f">
+          <input name="string[]" id="string-<?=$i++;?>" class="validate" readonly>
         </td>
-        <td>
-          <input name="string[]" id="string-2" class="validate" readonly>
-        </td>
-        <td>
-          <input name="string[]" id="string-3" class="validate" readonly>
-        </td>
-        <td>
-          <input name="string[]" id="string-4" class="validate" readonly>
-        </td>
-        <td>
-          <input name="string[]" id="string-5" class="validate" readonly>
-        </td>
+        <?php endforeach;?>
       </tr>
       <tr>
+      
+      <?php 
+        $shuffle = str_split(str_shuffle($item->ejaan));
+
+        foreach($shuffle as $row):
+      ?>
         <td>
-          <a href="#!" data-id ='m' class="btn"> M</a>
+          <a href="#!" data-id ='<?=$row;?>' class="btn"> <?=$row;?></a>
         </td>
-        <td>
-          <a href="#!" data-id='a' class="btn"> A</a>
-        </td>
-        <td>
-          <a href="#!" data-id='r' class="btn"> R</a>
-        </td>
-        <td>
-          <a href="#!" data-id='w' class="btn"> W</a>
-        </td>
-        <td>
-          <a href="#!" data-id='a' class="btn"> A</a>
-        </td>
+      <?php endforeach;?>  
       </tr>
     </table>
+    </form>
   </div>
 </div>
 <br>
@@ -77,14 +69,9 @@
     </div>
   </div>
 </div>
-<input type="" id="count" name="" value="0">
-<input type="" id="max" name="" value="5">
-<audio  class="audios" id="yes-audio" controls preload="none">  
-<source src="<?=base_url("src/sound/bunga_mawar.mp3");?>" type="audio/mpeg">
-</audio>
-<audio  class="audios" id="yes-audio-info" controls preload="none"> 
-<source src="<?=base_url("src/sound/bunga_mawar_deskripsi.mp3");?>" type="audio/mpeg">
-</audio>
+<input type="hidden" id="count" name="" value="0">
+<input type="hidden" id="max" name="" value="<?=count($string);?>">
+
 <script type="text/javascript">
   $('.link').click(function load_link() {
     var link = $(this).attr('data-link')
@@ -100,7 +87,20 @@
      var max    = $('#max').val();
      $('#string-'+next).val(string)
      if (parseInt(max)==next) {
-      swal('success','Yeay','success')
+          var form = $('#form_ejaan').serialize();
+          var url = './home/validation_ejaan/<?=$item->iditem;?>';
+          $.post(url,form,function (data) {
+            var obj = JSON.parse(data);
+              swal(obj.msg,obj.param.des,obj.param.icon)
+              if (obj.code=='1000') {
+                $('#index-banner').load('./home/bermain_susun_huruf');
+              }else{
+
+                console.log(obj.code)
+                $('.validate').val('');
+                return false;
+              }
+          })
      }else{
        $('#count').val(next)
      }

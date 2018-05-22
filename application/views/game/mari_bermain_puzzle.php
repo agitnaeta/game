@@ -40,13 +40,13 @@
          <div id="puzzle-containment" style="border-top: 1px solid #eee;border-bottom:1px solid #eee;background:#fafafa;margin:30px 0;padding:10px;text-align:center">
         <div class="pure-g" style="max-width:1280px;margin:auto">
             <div class="pure-u-1 pure-u-md-1-2"><div style="margin:10px">
-                <img id="source_image" class="pure-img" src="./src/img/vv.jpg" >
+                <img id="source_image" class="pure-img" src="./src/img/<?=$item->gambar;?>" >
             </div></div>
             <div class="pure-u-1 pure-u-md-1-2">
                 <div id="pile" style="margin:10px">
                     <div id="puzzle_solved" style="display:none;text-align:center;position:relative;top:25%">
                        <!-- <h6 class="center-align"> Yeay, Kamu Berhasil</h6> -->
-                       <a href="#" class="btn btn-large"> <i class="fa fa-refresh"></i> Main Lagi</a>
+                       <a href="#" data-link='<?=base_url('home/bermain_puzzle');?>' class="link btn btn-large"> <i class="fa fa-refresh"></i> Main Lagi</a>
                     </div>
                 </div>
             </div>
@@ -100,8 +100,8 @@
         });
 
          $('.link').click(function load_link() {
-    var link = $(this).attr('data-link')
-    $('#index-banner').load(link)
-  })
+            var link = $(this).attr('data-link')
+            $('#index-banner').load(link)
+          })
 
     </script>
