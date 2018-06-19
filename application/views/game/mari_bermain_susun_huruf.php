@@ -16,14 +16,14 @@
         <div class="card pop">
         <div class="card-image blue">
           <img src="<?=base_url("/src/img/$item->gambar");?>" height="100px;">
-          <span class="center-align card-title-mobile">Bunga Mawar</span>
+          <span class="center-align card-title-mobile"><?=$item->nama;?></span>
         </div>
       </div>
       </a>
   </div>
   <div class="s12 col">
     <form action="#!" method="post" id="form_ejaan">
-    <table>
+    <table width="100%">
       <tr>
         <?php 
           $string = str_split($item->ejaan);
@@ -97,7 +97,9 @@
               }else{
 
                 console.log(obj.code)
-                $('.validate').val('');
+                 $('.validate').val('');
+                 $('#string-1').focus()
+                 $('#count').val(0)
                 return false;
               }
           })

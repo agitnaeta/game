@@ -11,6 +11,8 @@ class Tpl
 	function __construct()
 	{
 		$this->ci =& get_instance();
+
+		// $this->ci->output->cache(43200);
 	}
 	private function _header($data='')
 	{
@@ -24,9 +26,9 @@ class Tpl
 		if (!isset($data['web_title']) && !isset($data['web_des']) && !isset($data['web_key'])) 
 		{
 			$data =[
-				'web_title' => 'E-recruitment PT. Kaldu Sari Nabati',
-				'web_des' => 'Penerimaan pegawai PT. Kaldu Sari Nabati',
-				'web_key' => 'Penerimaan pegawai PT. Kaldu Sari Nabati',
+				'web_title' => 'Marbel Apps',
+				'web_des' => 'Game untuk Mengenal Flora dan fauna',
+				'web_key' => 'Game, Mengenal Flora, Mengenal Fauna ',
 			];
 		}
 		$tpl = null;
@@ -48,7 +50,7 @@ class Tpl
 		$tpl .= $this->_footer();
 		echo  $tpl;
 	}
-	public function print($data='')
+	public function prints($data='')
 	{
 		$tpl = null;
 		$tpl .= $this->_header($data);

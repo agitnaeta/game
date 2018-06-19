@@ -47,7 +47,7 @@
 <br>
  <div class="row">
     <div class="col s12">
-     <a class="waves-effect waves-light btn-large btn-block btn-fixed  link" data-link='<?=base_url('home/content_home');?>'>
+     <a class="waves-effect waves-light btn-large btn-block btn-fixed  links" data-link='<?=base_url('home');?>'>
          <i class="fa fa-backward"></i>  Kembali
     </a>
     </div>
@@ -57,5 +57,9 @@
   $('.link').click(function load_link() {
     var link = $(this).attr('data-link')
     $('#index-banner').load(link)
+  })
+  $('.links').click(function load_link() {
+    var link = $(this).attr('data-link')
+      window.location.href=link
   })
 </script>

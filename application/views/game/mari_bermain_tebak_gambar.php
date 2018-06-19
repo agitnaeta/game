@@ -16,7 +16,7 @@
         <div class="card pop">
         <div class="card-image blue">
           <img src="<?=base_url("/src/img/");?><?=$item['gambar'];?>" height="100px;">
-          <span class="center-align card-title-mobile">Bunga Mawar</span>
+          <span class="center-align card-title-mobile"><?=$item['gambar'];?></span>
         </div>
       </div>
       </a>
@@ -69,6 +69,10 @@
       $.post(url,{iditem:iditem},function (data) {
         var obj = JSON.parse(data);
         swal(obj.msg, obj.param.des,obj.param.icon)
+        if (obj.code==1000) {
+          var link ='./home/bermain_tebak_gambar';
+          $('#index-banner').load(link)
+        }
       })
   })
 </script>

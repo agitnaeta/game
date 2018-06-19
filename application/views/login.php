@@ -1,6 +1,6 @@
 <div class="container" style="padding-top: 100px;">
 	<div class="row">
-		<h3 class="header center-align">E-recruitment <br>PT. Kaldu Sari Nabati</h3>
+		<h3 class="header center-align">Marbel App Login</h3>
 		<form method="post" action="<?=base_url("login/auth");?>">
 		<div class="col s6 offset-s3">
 			<div class="card">

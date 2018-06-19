@@ -17,7 +17,7 @@
         <a href="#!" class="link"  data-link='<?=base_url("home/mari_belajar_flora_lengkap/$f->iditem");?>'>
           <div class="card pop">
         <div class="card-image blue">
-            <img src="<?=base_url("/src/img/$f->icon");?>">
+            <img src="<?=base_url("/src/img/$f->gambar");?>" width="100%">
             <span class="center-align card-title-mobile"><?=$f->nama;?></span>
           </div>
         </div>

@@ -48,6 +48,7 @@
 		public function mari_belajar_flora_lengkap($id='')
 		{
 			$data['f'] = $this->mi->get('iditem',$id)->row_object();
+			$data['judul'] = $data['f']->type;
 			echo $this->load->view('game/mari_belajar_flora_lengkap',$data,true);
 		}
 		// END-BELAJAR
@@ -60,27 +61,34 @@
 
 		public function bermain_puzzle()
 		{
-			$count = $this->mi->count()->row_object()->jumlah;
-			$rand = rand(1,$count);
-			$data['item']= $this->mi->get('iditem',$rand)->row_object();
+			$data['item'] = $this->search_item();
 			echo $this->load->view('game/mari_bermain_puzzle',$data,true);
 			
 		}
+		public function search_item()
+		{
+			$count = $this->mi->max_id()->row_object()->iditem;
+			$rand = rand(1,$count);
+			$item = $this->mi->get('iditem',$rand)->row_object();
+			if ($item ==null) {
+				return $this->search_item();
+			}else{
+				return $item;
+			}
+		}
 		public function bermain_susun_huruf()
 		{
-			$count = $this->mi->count()->row_object()->jumlah;
-			$rand = rand(1,$count);
-			$data['item']= $this->mi->get('iditem',$rand)->row_object();
+			
+			$data['item']= $this->search_item();
 			echo $this->load->view('game/mari_bermain_susun_huruf',$data,true);
 			
 		}
 		public function bermain_tebak_gambar()
 		{
 			$other= null;
-			$count = $this->mi->count()->row_object()->jumlah;
-			$rand = rand(1,$count);
-			$data['item']= $this->mi->get('iditem',$rand)->row_array();
-			$other = $this->mi->other($rand)->result_array();
+			
+			$data['item']= (array)$this->search_item();
+			$other = $this->mi->other($data['item']['iditem'])->result_array();
 			
 			
 			$merge = array_merge((array)[$data['item']],$other);

@@ -33,14 +33,14 @@
 			if ($auth==null) {
 				$this->index(reply("99",'login gagal','try again'));
 			}else{
-				$role= role($auth->role);
-				$this->session->set_userdata($role,$auth);
-				redirect("dashboard");
+				// $role= role($auth->role);
+				$this->session->set_userdata('admin',$auth);
+				redirect("panel");
 			}
 		}
 		public function logout()
 		{
 			$this->session->sess_destroy();
-			redirect(base_url());
+			redirect(base_url("login"));
 		}
 	}

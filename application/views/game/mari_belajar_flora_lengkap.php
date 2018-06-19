@@ -6,7 +6,7 @@
     </div>
     <div class="col s6">
       <h5>
-         Mengenal Flora 
+         Mengenal <?=ucfirst($judul);?> 
       </h5>
       <span>Di Indonesia</span>
     </div>
